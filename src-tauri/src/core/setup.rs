@@ -54,7 +54,8 @@ pub fn init(app: &mut App) -> Result<(), Box<dyn std::error::Error>> {
             let window = Arc::new(Mutex::new(core_window));
 
             let main_view =
-                WebviewBuilder::new("main", WebviewUrl::App("https://chatgpt.com".into()))
+                WebviewBuilder::new("main", WebviewUrl::App("https://lmarena.ai".into()))
+                    .proxy_url("socks5://127.0.0.1:20808".parse().unwrap())
                     .auto_resize()
                     .on_download({
                         let app_handle = handle.clone();
@@ -97,10 +98,12 @@ pub fn init(app: &mut App) -> Result<(), Box<dyn std::error::Error>> {
                 "titlebar",
                 WebviewUrl::App("index.html".into()),
             )
+            .proxy_url("socks5://127.0.0.1:20808".parse().unwrap())
             .auto_resize();
 
             let ask_view =
                 WebviewBuilder::new("ask", WebviewUrl::App("index.html".into()))
+                    .proxy_url("socks5://127.0.0.1:20808".parse().unwrap())
                     .auto_resize();
 
             let win = window.lock().unwrap();

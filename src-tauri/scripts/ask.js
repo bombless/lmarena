@@ -19,14 +19,11 @@ class ChatAsk {
   }
 
   static submit() {
-    const btns = document.querySelectorAll('main form button');
-    const btn = btns[btns.length - 1];
-
-    if (btn) {
+    const btns = document.querySelectorAll('[type="submit"]');
+      const btn = btns[0];
       btn.focus();
       btn.disabled = false;
       btn.click();
-    }
   }
 }
 
